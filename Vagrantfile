@@ -1,7 +1,14 @@
 $script = <<-SCRIPT
-echo "12345" | passwd vagrant --stdin
 sed -i "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
 systemctl restart sshd
+SCRIPT
+
+$ubuntu = <<-SCRIPT
+usermod --password $(echo "12345" | openssl passwd -1 -stdin) vagrant
+SCRIPT
+
+$centos = <<-SCRIPT
+echo "12345" | passwd vagrant --stdin
 SCRIPT
 
 $ssh = <<-SCRIPT
@@ -23,26 +30,31 @@ Vagrant.configure("2") do |config|
   config.vm.define "node1_centos" do |node1_centos|
     node1_centos.vm.box = "centos/7"
     node1_centos.vm.network "private_network", ip: "192.168.50.50", virtualbox__intnet: "intnet"
+    node1_centos.vm.provision "shell", inline: $centos
   end
 
   config.vm.define "node2_centos" do |node2_centos|
     node2_centos.vm.box = "centos/7"
     node2_centos.vm.network "private_network", ip: "192.168.50.51", virtualbox__intnet: "intnet"
+    node2_centos.vm.provision "shell", inline: $centos
   end
 
   config.vm.define "node1_ubuntu" do |node1_ubuntu|
     node1_ubuntu.vm.box = "ubuntu/xenial64"
     node1_ubuntu.vm.network "private_network", ip: "192.168.50.53", virtualbox__intnet: "intnet"
+    node1_ubuntu.vm.provision "shell", inline: $ubuntu
   end
 
   config.vm.define "node2_ubuntu" do |node2_ubuntu|
     node2_ubuntu.vm.box = "ubuntu/xenial64"
     node2_ubuntu.vm.network "private_network", ip: "192.168.50.54", virtualbox__intnet: "intnet"
+    node2_ubuntu.vm.provision "shell", inline: $ubuntu
   end
 
   config.vm.define "ansible" do |ansible|
     ansible.vm.box = "centos/7"
     ansible.vm.network "private_network", ip: "192.168.50.52", virtualbox__intnet: "intnet"
+    ansible.vm.provision "shell", inline: $centos
     ansible.vm.provision "shell", privileged: false, inline: $ssh
   end
 
