@@ -4,6 +4,18 @@ sed -i "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd
 systemctl restart sshd
 SCRIPT
 
+$ssh = <<-SCRIPT
+sudo yum install -y sshpass
+ssh-keygen -N "" -f /home/vagrant/.ssh/id_rsa
+echo -e "192.168.50.50\n192.168.50.51\n192.168.50.53\n192.168.50.54\n192.168.50.52" > host_list
+ssh-keyscan -f host_list  >> /home/vagrant/.ssh/known_hosts
+rm host_list
+sshpass -p 12345 ssh-copy-id 192.168.50.50
+sshpass -p 12345 ssh-copy-id 192.168.50.51
+sshpass -p 12345 ssh-copy-id 192.168.50.52
+sshpass -p 12345 ssh-copy-id 192.168.50.53
+sshpass -p 12345 ssh-copy-id 192.168.50.54
+SCRIPT
 
 Vagrant.configure("2") do |config|
   config.vm.provision "shell", inline: $script
@@ -31,6 +43,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "ansible" do |ansible|
     ansible.vm.box = "centos/7"
     ansible.vm.network "private_network", ip: "192.168.50.52", virtualbox__intnet: "intnet"
+    ansible.vm.provision "shell", privileged: false, inline: $ssh
   end
 
 end
