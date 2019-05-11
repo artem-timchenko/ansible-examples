@@ -10,12 +10,12 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.define "node1_ubuntu" do |node1_ubuntu|
-    node1_ubuntu.vm.box = "centos/7"
+    node1_ubuntu.vm.box = "ubuntu/xenial64"
     node1_ubuntu.vm.network "private_network", ip: "192.168.50.53", virtualbox__intnet: "intnet"
   end
 
   config.vm.define "node2_ubuntu" do |node2_ubuntu|
-    node2_ubuntu.vm.box = "centos/7"
+    node2_ubuntu.vm.box = "ubuntu/xenial64"
     node2_ubuntu.vm.network "private_network", ip: "192.168.50.54", virtualbox__intnet: "intnet"
   end
 
