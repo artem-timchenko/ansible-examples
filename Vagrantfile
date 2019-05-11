@@ -62,6 +62,7 @@ Vagrant.configure("2") do |config|
     ansible.vm.network "private_network", ip: "192.168.50.52", virtualbox__intnet: "intnet"
     ansible.vm.provision "shell", inline: $centos
     ansible.vm.provision "shell", privileged: false, inline: $ssh
+    ansible.vm.provision "shell", inline: $ansible
   end
 
 end
