@@ -1,4 +1,13 @@
+$script = <<-SCRIPT
+echo "12345" | passwd vagrant --stdin
+sed -i "s/.*PasswordAuthentication.*/PasswordAuthentication yes/g" /etc/ssh/sshd_config
+systemctl restart sshd
+SCRIPT
+
+
 Vagrant.configure("2") do |config|
+  config.vm.provision "shell", inline: $script
+
   config.vm.define "node1_centos" do |node1_centos|
     node1_centos.vm.box = "centos/7"
     node1_centos.vm.network "private_network", ip: "192.168.50.50", virtualbox__intnet: "intnet"
