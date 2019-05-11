@@ -5,6 +5,7 @@ SCRIPT
 
 $ubuntu = <<-SCRIPT
 usermod --password $(echo "12345" | openssl passwd -1 -stdin) vagrant
+apt-get install -y python
 SCRIPT
 
 $centos = <<-SCRIPT
@@ -22,6 +23,11 @@ sshpass -p 12345 ssh-copy-id 192.168.50.51
 sshpass -p 12345 ssh-copy-id 192.168.50.52
 sshpass -p 12345 ssh-copy-id 192.168.50.53
 sshpass -p 12345 ssh-copy-id 192.168.50.54
+SCRIPT
+
+$ansible = <<-SCRIPT
+yum install -y epel-release
+yum install -y git ansible
 SCRIPT
 
 Vagrant.configure("2") do |config|
