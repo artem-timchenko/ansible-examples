@@ -10,6 +10,7 @@ SCRIPT
 
 $centos = <<-SCRIPT
 echo "12345" | passwd vagrant --stdin
+yum install -y epel-release
 SCRIPT
 
 $ssh = <<-SCRIPT
@@ -26,7 +27,6 @@ sshpass -p 12345 ssh-copy-id 192.168.50.54
 SCRIPT
 
 $ansible = <<-SCRIPT
-yum install -y epel-release
 yum install -y git ansible
 SCRIPT
 
