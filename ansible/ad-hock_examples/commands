@@ -1,0 +1,18 @@
+ansible -m ping -i inventory all -f 1
+# Executes the command on each host in sequence. -f - forks, default = 5
+
+ansible -i inventory all -b -m yum -a "name=nginx state=lastest"
+# -b for become, by default using sudo
+
+ansible -m ping -i inventory all --limit "*1"
+# --limit is used to limit selected hosts to an additional pattern. Asterisk is a wildcard.
+# Prefix ~ can be used to match the regular expression. ~".*1"
+# Will be executed on centos_1 and ubuntu_1
+
+ansible -i inventory all -a "sleep 10" -B 30 -P 2
+# Runs tasks asynchronously. 
+# -B  the maximum amount of time (in seconds) to let the task run.
+# -P the amount of time (in seconds) to wait between polling the servers for an updated job status.
+# if -P == 0 it is "fire-and-forget" task. Ansible won't check it status.
+# WARNING: Ansible still will kill the task if it take longer than the -B limit.
+# Example: ansible -i inventory all -a "sleep 500" -B 10 -P 0, sleep 500 process will be killed after 10 seconds.
