@@ -1,0 +1,7 @@
+[centos]
+centos_1 ansible_host=192.168.50.50
+centos_2 ansible_host=192.168.50.51
+
+[ubuntu]
+ubuntu_1 ansible_host=192.168.50.53
+ubuntu_2 ansible_host=192.168.50.54
