@@ -1,0 +1,12 @@
+ansible-playbook -i ../inventory main.yml --limit centos
+# --limit allow to limit the hosts where playbook will be executed. Accept groups, hosts, multiple groups, wildcard.
+
+ansible-playbook -i ../inventory main.yml --list-hosts
+# Lists all hosts where the playbook will be executed. Shows hosts per play.
+ansible-playbook -i ../inventory main.yml --list-hosts --limit centos
+
+ansible-playbook -i ../inventory main.yml -f 1
+# Set number of forks (concurrent executors)
+
+ansible-playbook -i ../inventory main.yml --check
+# Dry-mode
