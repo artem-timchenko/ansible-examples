@@ -1,0 +1,30 @@
+---
+- name: Show different multiline vars
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Some text including newlines
+      debug:
+        msg: |
+          This
+          text
+          is in
+          multiple lines
+    - name: Similar, but excluding last new line symbol
+      debug:
+        msg: |-
+          We
+          don't
+          have the last new line symbol
+    - name: Whitespace instead of new line
+      debug:
+        msg: >
+          No
+          newlines
+          here, but on in the end
+    - name: And even no new line in the end of the string
+      debug:
+        msg: >-
+          And
+          no
+          newlines in the end      
