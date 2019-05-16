@@ -1,0 +1,11 @@
+---
+- name: "Install packages"
+  hosts: all
+  become: true
+  tasks:
+    - package:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - telnet
+        - python

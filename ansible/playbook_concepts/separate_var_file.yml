@@ -1,0 +1,9 @@
+---
+- name: "Added separated file with vars"
+  hosts: all
+  gather_facts: false
+  vars_files:
+    - vars.yml
+  tasks:
+    - debug:
+        var: var1
