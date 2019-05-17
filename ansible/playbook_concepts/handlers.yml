@@ -1,0 +1,50 @@
+---
+- name: Notify multiple handlers
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Notify multiple handlers
+      shell: ls
+      notify:
+        - handler1
+        - handler2
+  handlers:
+    - name: handler1
+      debug:
+        msg: "This is handler1"
+    - name: handler2
+      debug:
+        msg: "This is handler2"
+
+- name: Handler notifies handlers
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Notify single handler
+      shell: ls
+      notify: handler1
+  handlers:
+    - name: handler1
+      shell: ls
+      notify:
+        - handler2
+    - name: handler2
+      debug: 
+        msg: "Notified handler"
+
+- name: Flush handlers
+  hosts: all
+  gather_facts: no
+  tasks:
+    - name: Task 1
+      shell: ls
+      notify: handler
+    - name: Handler will run now
+      meta: flush_handlers
+    - name: Task 2
+      debug:
+        msg: "This is executed after the handler"
+  handlers:
+    - name: handler
+      debug:
+        msg: "This is handler"

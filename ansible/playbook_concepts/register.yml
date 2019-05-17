@@ -1,0 +1,10 @@
+---
+- name: Register output to variable
+  hosts: all
+  tasks:
+    - name: Execute ls
+      shell: ls
+      register: ls_output
+    - name: Print registered var
+      debug:
+        var: ls_output
