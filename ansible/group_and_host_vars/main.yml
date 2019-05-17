@@ -1,0 +1,7 @@
+---
+- name: Variables from group and host var files
+  hosts: all
+  tasks:
+    - name: Print var
+      debug:
+        var: host_os
