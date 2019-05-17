@@ -1,0 +1,18 @@
+---
+- name: Show environment keyword
+  hosts: all
+  tasks:
+    - name: Path env var from the target host
+      shell: echo $PATH
+      register: path_from_host
+    - name: Print $PATH
+      debug:
+        var: path_from_host
+    - name: Path env var set by ansible
+      shell: echo $PATH
+      environment: 
+        PATH: some_cool_path
+      register: path_from_ansible
+    - name: Print updated $PATH
+      debug:
+        var: path_from_ansible
