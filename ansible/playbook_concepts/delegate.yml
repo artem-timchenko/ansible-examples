@@ -1,0 +1,12 @@
+---
+- name: Delegate
+  hosts: all
+  tasks: 
+    - name: Delegate to centos_1
+      shell: ip addr show eth1
+      delegate_to: centos_1
+      register: output
+      environment:
+        PATH: /usr/sbin
+    - debug: 
+        var: output
