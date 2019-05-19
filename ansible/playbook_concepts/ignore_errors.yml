@@ -1,0 +1,7 @@
+---
+- name: ignore_errors example
+  hosts: all
+  tasks: 
+    - name: Command fails, but it's ok
+      shell: "uname -k"
+      ignore_errors: true
