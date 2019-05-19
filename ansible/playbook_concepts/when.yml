@@ -1,0 +1,8 @@
+---
+- name: When condition
+  hosts: all
+  tasks:
+    - name: Print only when host name ends on 1
+      debug:
+        var: inventory_hostname
+      when: inventory_hostname is search("_1")
