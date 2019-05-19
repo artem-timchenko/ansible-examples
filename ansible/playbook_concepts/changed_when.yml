@@ -1,0 +1,8 @@
+---
+- name: changed_when example
+  hosts: all
+  tasks: 
+    - name: Changed only when kernel version is 3.*
+      shell: "uname -r"
+      register: output
+      changed_when: "'3.' in output.stdout"
