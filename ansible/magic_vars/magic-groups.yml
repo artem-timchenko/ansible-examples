@@ -1,0 +1,7 @@
+---
+- name: groups
+  hosts: centos_1
+  tasks:
+    - name: Print groups var
+      debug:
+        var: groups

@@ -1,0 +1,7 @@
+---
+- name: hostvars
+  hosts: centos_1
+  tasks:
+    - name: Print all vars
+      debug:
+        var: hostvars

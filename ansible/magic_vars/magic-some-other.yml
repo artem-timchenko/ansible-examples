@@ -1,0 +1,13 @@
+---
+- name: Other magic vars
+  hosts: centos_1
+  tasks: 
+    - name: inventory_hostname
+      debug: 
+        var: inventory_hostname
+    - name: inventory_hostname_short
+      debug: 
+        var: inventory_hostname_short
+    - name: play_hosts
+      debug:
+        var: play_hosts
