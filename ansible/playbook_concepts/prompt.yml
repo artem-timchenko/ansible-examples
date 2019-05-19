@@ -1,0 +1,10 @@
+---
+- name: Prompt
+  hosts: all
+  vars_prompt:
+    - name: some_test
+      prompt: "Enter something here"
+  tasks:
+    - name: Output the prompt
+      debug:
+        var: some_test
