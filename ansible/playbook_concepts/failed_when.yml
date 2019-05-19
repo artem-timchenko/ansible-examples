@@ -1,0 +1,8 @@
+---
+- name: failed_when example
+  hosts: all
+  tasks: 
+    - name: Failed only when kernel version is 4.*
+      shell: "uname -r"
+      register: output
+      failed_when: "'4.' in output.stdout"
