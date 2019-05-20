@@ -1,0 +1,16 @@
+---
+- name: Blocks
+  hosts: centos
+  tasks:
+    - name: Block task
+      block:
+        - debug: msg="This is inside the block"
+        - name: Extended syntax
+          debug: 
+            msg: "Another one"
+        - name: Loops are also possible
+          debug: 
+            var: item
+          loop:
+            - one
+            - two

@@ -1,0 +1,19 @@
+---
+- name: Shows errors handling
+  hosts: ubuntu
+  tasks:
+    - name: Block with an error
+      block:
+        - name: This is normal task
+          debug:
+            msg: "Everything is ok"
+        - name: Here is an error
+          shell: /bin/false
+        - name: This will never be executed
+          debug: msg="("
+      rescue:
+        - debug:
+            msg: "We caught an error!"
+      always:
+        - debug:
+            msg: "I will always be executed"
