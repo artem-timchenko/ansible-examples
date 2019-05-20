@@ -1,0 +1,16 @@
+---
+- name: Shows the difference between import and include
+  hosts: all
+  vars:
+    test_var: "Hello"
+  tasks:
+    - include_tasks: "{{ item }}"
+      loop:
+        - tasks1.yml
+        - tasks2.yml
+    - name: This won't work
+      import_tasks: "{{ item }}"
+      loop:
+        - tasks1.yml
+        - tasks2.yml
+      

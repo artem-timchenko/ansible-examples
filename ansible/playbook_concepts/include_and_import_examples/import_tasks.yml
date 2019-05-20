@@ -1,0 +1,5 @@
+---
+- name: Import statement is pre-processed at the time playbooks are parsed
+  hosts: all
+  tasks:
+    - import_tasks: tasks1.yml

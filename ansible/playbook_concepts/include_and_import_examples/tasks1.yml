@@ -1,0 +1,7 @@
+---
+- name: Print something
+  debug:
+    msg: "We imported this task"
+- name: And one more time
+  debug:
+    msg: "And this one either"

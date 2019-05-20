@@ -1,0 +1,4 @@
+---
+- name: This is another tasks file
+  debug:
+    msg: Another file

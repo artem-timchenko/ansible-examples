@@ -1,0 +1,7 @@
+---
+- name: Include is processed during execution of the playbook
+  hosts: all
+  tasks:
+    - include_tasks: tasks1.yml
+      vars:
+        var1: Some unused variable
