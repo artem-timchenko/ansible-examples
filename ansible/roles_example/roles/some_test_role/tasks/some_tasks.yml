@@ -1,0 +1,8 @@
+---
+- name: Super task #1
+  debug:
+    msg: Hello
+
+- name: Super task #2
+  debug:
+    msg: from this role
