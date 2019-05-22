@@ -1,0 +1,14 @@
+---
+- name: Tags
+  hosts: all
+  tasks:
+    - name: First
+      debug:
+        msg: "First task"
+      tags:
+        - first_task
+    - name: Second
+      debug:
+        msg: "Second task"
+      tags:
+        - second_task
