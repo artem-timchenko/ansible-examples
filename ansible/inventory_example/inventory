@@ -1,0 +1,19 @@
+# Some ungrouped hosts:
+host_1
+192.168.0.5
+
+[group1]
+host1
+host2
+
+[group2]
+host3
+host4
+
+[group3:children]
+group1
+group2
+
+[group2:vars]
+var1=value1
+var2=value2
