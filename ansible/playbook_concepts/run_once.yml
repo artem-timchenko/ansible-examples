@@ -1,0 +1,8 @@
+---
+- name: Run once
+  hosts: all
+  tasks:
+    - name: Run
+      debug:
+        msg: "Hello"
+      run_once: true
