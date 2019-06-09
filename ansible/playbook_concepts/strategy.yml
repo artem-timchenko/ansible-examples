@@ -1,0 +1,14 @@
+---
+- name: Changing default strategy
+  strategy: free
+  hosts: all
+  tasks:
+    - name: Start
+      debug: 
+        msg: "Let's start"
+    - name: Some sleep
+      shell: sleep 10
+      when: inventory_hostname is search('_2')
+    - name: Finish
+      debug:
+        msg: "Done"
