@@ -1,0 +1,7 @@
+---
+- name: Host selection
+  hosts: ~.*_2
+  tasks:
+    - name: Print something
+      debug:
+        msg: "Hello"
