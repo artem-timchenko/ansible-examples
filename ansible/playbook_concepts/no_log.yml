@@ -1,0 +1,11 @@
+---
+- name: no_log example
+  hosts: all
+  tasks:
+    - name: Print something
+      debug:
+        msg: "Hello"
+    - name: Some super secret info
+      no_log: true
+      debug:
+        msg: "Password: 1234"
