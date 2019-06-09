@@ -1,0 +1,14 @@
+---
+- name: Default bahaviour
+  hosts: all
+  any_errors_fatal: true
+  tasks:
+    - name: This works
+      debug:
+        msg: "Hello"
+    - name: This will fail
+      shell: /bin/false
+      when: inventory_hostname is search("_2")
+    - name: This will never be executed
+      debug:
+        msg: "Never"
