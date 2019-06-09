@@ -1,0 +1,7 @@
+---
+- name: Prints file content
+  hosts: all
+  tasks:
+    - name: Print
+      debug:
+        msg: "{{ lookup('file', 'data.txt') }}"
