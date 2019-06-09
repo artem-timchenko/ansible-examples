@@ -1,0 +1,45 @@
+---
+- name: Default order of inventory
+  hosts: all
+  order: inventory
+  gather_facts: false
+  tasks:
+  - name: Default order
+    debug: 
+      msg: "Test"
+
+- name: Reverse order
+  hosts: all
+  order: reverse_inventory
+  gather_facts: false
+  tasks:
+  - name: Reverse order
+    debug:
+      msg: "Another one"
+
+- name: Sorted order
+  hosts: all
+  order: sorted
+  gather_facts: false
+  tasks:
+  - name: Sorted order
+    debug:
+      msg: "New one"
+
+- name: Reverse sorted order
+  hosts: all
+  order: reverse_sorted
+  gather_facts: false
+  tasks:
+  - name: Reverse sorted order
+    debug:
+      msg: "Brand new"
+
+- name: Random order
+  hosts: all
+  order: shuffle
+  gather_facts: false
+  tasks:
+  - name: Random order
+    debug:
+      msg: "Last one"
