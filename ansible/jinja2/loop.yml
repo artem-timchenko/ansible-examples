@@ -1,0 +1,19 @@
+---
+- name: demo the template
+  hosts: localhost
+  gather_facts: false
+  vars:
+    data_dirs:
+      - /
+      - .
+      - ..
+      - first
+      - second
+      - third
+  tasks:
+    - name: loop
+      pause:
+        prompt: "{{ lookup('template', 'loop.j2') }}"
+    - name: loop with condition
+      pause:
+        prompt: "{{ lookup('template', 'loop_with_condition.j2') }}"

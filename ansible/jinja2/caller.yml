@@ -1,0 +1,8 @@
+---
+- name: demo the caller
+  hosts: localhost
+  gather_facts: false
+  tasks:
+    - name: macro
+      pause:
+        prompt: "{{ lookup('template', 'caller.j2') }}"

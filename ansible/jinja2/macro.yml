@@ -1,0 +1,11 @@
+---
+- name: demo the template
+  hosts: localhost
+  gather_facts: false
+  vars:
+    a: Hello
+    b: world
+  tasks:
+    - name: macro
+      pause:
+        prompt: "{{ lookup('template', 'macro.j2') }}"

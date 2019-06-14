@@ -1,0 +1,14 @@
+{% macro concat(a="a string", b="b string") -%}
+a = {{ a }}
+b = {{ b }}
+a + b = {{ a }} {{ b }}
+Macro details:
+  Macro name: {{ concat.name }}
+  Macro arguments: {{ concat.arguments }}
+  Unexpected varargs: {{ varargs }}
+  Unexpected kwargs: {{ kwargs }}
+
+{%- endmacro -%}
+
+
+{{ concat(a, b, 'surprise', unexpected='surprise') }}
