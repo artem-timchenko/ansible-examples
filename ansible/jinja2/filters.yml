@@ -1,0 +1,63 @@
+---
+- name: Filters
+  hosts: localhost
+  gather_facts: false
+  vars:
+    a: Hello
+    b: world
+    c: Some loNg mesSaGe
+    d: No Yes no yes
+    math_var: 3.4
+    path: /var/log/app/API/log.txt
+    rel_path: ~/.bashrc
+    base64_string: dGVzdA==
+    some_source: This is very important string
+    multi: |
+      Some
+      multiline
+      var
+    some_list:
+      - one
+      - two
+      - many
+  tasks:
+    - name: Filter
+      debug:
+        msg:
+          - "{{ c | lower }}"
+          - "{{ d | replace('no', 'yes') }}"
+          - "{{ d | lower | replace('no', 'yes') }}"
+          - "{{ undefined_var | default('This is default value') }}"
+          - "{{ d | count }}"
+          - "{{ multi | count }}"
+          - "{{ multi | random }}"
+          - "{{ some_list | random }}"
+          - "{{ some_list | shuffle }}"
+          - "{{ math_var | round }}"
+          - "{{ path | basename }}"
+          - "{{ path | dirname }}"
+          - "{{ rel_path | expanduser }}"
+          - "{{ base64_string | b64decode }}"
+          - "{{ some_source is search('very') }}"
+          - "{{ a == b }}"
+          - "{{ a == b | replace('world', 'Hello') }}"
+          - "{{ a }}" is not 'heLLo'
+
+    - name: Default omit
+      vars:
+        long_hash:
+          - name: first
+            ver: 1
+          - name: second
+          - name: third
+            ver: 2.3
+      debug:
+        msg: "{{ item.name }} - this is name. This is version: {{ item.ver | default(omit) }}"
+      with_items:
+        - "{{ long_hash }}"
+    - name: Some string methods
+      vars:
+        main_string: This is some super cool string
+      debug:
+        msg: "{{ item }} - the index is {{ main_string.upper().split().index(item) }}"
+      with_items: "{{ main_string.upper().split() }}"
