@@ -41,8 +41,6 @@
           - "{{ some_source is search('very') }}"
           - "{{ a == b }}"
           - "{{ a == b | replace('world', 'Hello') }}"
-          - "{{ a }}" is not 'heLLo'
-
     - name: Default omit
       vars:
         long_hash:
