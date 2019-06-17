@@ -11,7 +11,7 @@
       package: 
         name: "{{ package_name[ansible_distribution ]}}"
         state: present 
-    - name: start apache
+    - name: start and enable apache
       systemd:
         name: "{{ package_name[ansible_distribution ]}}"
         state: started
