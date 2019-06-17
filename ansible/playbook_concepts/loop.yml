@@ -9,3 +9,13 @@
       loop:
         - telnet
         - python
+    - name: Some loop_control
+      debug:
+        msg: "{{ new_name }} and the index is {{  my_idx }}"
+      loop:
+        - one
+        - two
+        - hello
+      loop_control:
+        loop_var: new_name
+        index_var: my_idx
