@@ -1,0 +1,6 @@
+---
+- name: Test new module
+  hosts: all
+  tasks:
+     - name: First test
+       say_hello:
