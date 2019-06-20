@@ -1,0 +1,7 @@
+---
+- name: Custom plugin example
+  hosts: localhost
+  tasks:
+    - name: Plugin
+      debug:
+        msg: "{{ 'Something' | string_sum('abc') }}"
